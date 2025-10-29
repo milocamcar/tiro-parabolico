@@ -1,0 +1,120 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Simulación de tiro parabólico</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header role="banner">
+    <h1>Simulación de tiro parabólico</h1>
+    <p class="subtitle">1.º de Bachillerato – Física</p>
+  </header>
+
+  <main role="main">
+    <!-- 2. Contenedor de la simulación -->
+    <section id="simulation">
+      <div id="controls" aria-label="Controles de parámetros">
+        <div class="control-group">
+          <label for="v0-slider">Velocidad inicial (m/s)</label>
+          <input
+            type="range" id="v0-slider"
+            min="0" max="100" step="1" value="50"
+            role="slider" aria-label="Velocidad inicial"
+            aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+          />
+          <div id="v0-display" class="value-display">50 m/s</div>
+        </div>
+        <div class="control-group">
+          <label for="angle-slider">Ángulo inicial (°)</label>
+          <input
+            type="range" id="angle-slider"
+            min="0" max="90" step="1" value="45"
+            role="slider" aria-label="Ángulo inicial"
+            aria-valuemin="0" aria-valuemax="90" aria-valuenow="45"
+          />
+          <div id="angle-display" class="value-display">45°</div>
+        </div>
+      </div>
+
+      <div id="metrics" aria-live="polite">
+        <p id="max-height">Altura máxima: 0.00 m</p>
+        <p id="max-range">Alcance máximo: 0.00 m</p>
+      </div>
+
+      <div id="chart-container">
+        <canvas id="trajectory-chart"
+                role="img"
+                aria-label="Gráfica de trayectoria de tiro parabólico">
+        </canvas>
+        <div id="error-message" role="alert" hidden>
+          Error: No se pudo cargar Chart.js. Comprueba tu conexión.
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. Contenido teórico resumido -->
+    <section id="theory">
+      <h2>Contenido teórico resumido</h2>
+      <p>
+        El tiro parabólico es un movimiento bidimensional en el que un objeto se lanza con
+        velocidad inicial <em>v<sub>0</sub></em> y ángulo <em>θ</em> respecto al horizonte,
+        sometido únicamente a la aceleración de la gravedad <strong>g = 9,8 m/s²</strong>.
+      </p>
+      <p>
+        Ecuaciones fundamentales:
+        <br>
+        • <strong>x(t) = v<sub>0</sub>·cosθ·t</strong>
+        <br>
+        • <strong>y(t) = v<sub>0</sub>·sinθ·t – ½·g·t²</strong>
+      </p>
+      <p>
+        De estas se deducen:
+        <br>
+        • Altura máxima: <em>h<sub>max</sub> = v<sub>0</sub>²·sin²θ / (2·g)</em>
+        <br>
+        • Alcance: <em>R = v<sub>0</sub>²·sin(2θ) / g</em>
+      </p>
+    </section>
+
+    <!-- 4. Enlaces a vídeos de YouTube -->
+    <section id="videos">
+      <h2>Vídeos recomendados</h2>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=ZzODL7ATfWw" target="_blank" rel="noopener">Tiro parabólico – Profe Luisito</a></li>
+        <li><a href="https://www.youtube.com/watch?v=5jZps8FqGd8" target="_blank" rel="noopener">Movimiento parabólico explicado paso a paso</a></li>
+        <li><a href="https://www.youtube.com/watch?v=Hb2c3Gt5MxI" target="_blank" rel="noopener">Ejercicios resueltos de tiro parabólico</a></li>
+      </ul>
+    </section>
+
+    <!-- 5. Ejercicios y actividades -->
+    <section id="exercises">
+      <h2>Ejercicios y actividades</h2>
+      <ol>
+        <li>Calcular altura máxima y alcance para <em>v<sub>0</sub></em>=20 m/s y θ=30°.</li>
+        <li>Determinar el ángulo que maximiza el alcance para una misma velocidad inicial.</li>
+        <li>Comparar gráficamente trayectorias con distintos valores de θ (15°, 45°, 75°).</li>
+        <li>Analizar cómo cambiaría la trayectoria si g fuera diferente (p.ej. en otro planeta).</li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- 6. Referencias del autor -->
+  <footer id="references" role="contentinfo">
+    <h2>Referencias del autor</h2>
+    <p>Autor: Juan Pérez, Instituto de Ciencias XYZ</p>
+    <p>Email: juan.perez@xyz.edu</p>
+    <p>Curso: 1.º de Bachillerato – Física (2024–2025)</p>
+  </footer>
+
+  <script>
+    function handleChartJSError() {
+      document.getElementById('error-message').hidden = false;
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js" onerror="handleChartJSError()"></script>
+  <script src="script.js"></script>
+</body>
+</html>
